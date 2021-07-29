@@ -1,0 +1,12 @@
+Actions Used
+- checkout
+- hello-world-javascript-action
+
+Environment Variables
+- $GITHUB_SHA
+- $GITHUB_REPOSITORY
+- $GITHUB_WORKSPACE
+
+Outputs
+- github.token
+- github.<id-of-step>.outputs.time
