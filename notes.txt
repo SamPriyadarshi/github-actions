@@ -10,3 +10,6 @@ Environment Variables
 Outputs
 - github.token
 - github.<id-of-step>.outputs.time
+- github.event.client_payload.<key> # Repository Dispatch
+
+Patterns for paths: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet

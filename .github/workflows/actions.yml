@@ -1,11 +1,31 @@
 name: actions
 
-on: [push]
+on:
+  push: # or pull_request
+    branches: # or branches-ignore to run on all branches except some
+      - main
+      - 'feature/*' # matches antything like feature/a, feature/b
+      - 'feature/**' # matches anything like feature/feat/a
+      - '!feature/**'
+    tags: # or tags-ignore
+      - v1.*
+    paths-ignore: # or paths. can't use both together. Same for tags and branches
+      - 'docs/**'
+  # repository_dispatch:
+  #   types: [build]
+  # # schedule:
+  #   # - cron: "0/5 * * * *"
+  # push:
+  # pull_request:
+  #   types: [opened, assigned, closed, reopened]
 
 jobs:
   run-github-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: get payload from repository dispatch
+        run: |
+            echo "${{ github.event.client_payload.env}}"
       - name: List Files
         run: |
             pwd
