@@ -4,7 +4,22 @@ on: [push]
 
 jobs:
   node-version:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+        node_version: [6, 7, 8]
+      # fail-fast: true
+        # include:
+        #   - os: ubuntu-latest
+        #     node_version: 8
+        #     is_ubuntu_8: "true"
+        # exclude:
+        #   - os: ubuntu-latest
+        #     node_version: 6
+        #   - os: ubuntu-latest
+        #     node_version: 8
+
+    runs-on: ${{ matrix.os }} # ubuntu-latest
     steps:
       - name: node-version
         run: |
@@ -12,7 +27,8 @@ jobs:
       - name: change-node-version
         uses: actions/setup-node@v1
         with:
-          node-version: 6
+          node-version: ${{ matrix.node_version }}
+          # node-version: 6
       - name: node-version
         run: |
           node -v    
