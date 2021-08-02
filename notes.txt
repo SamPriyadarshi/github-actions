@@ -6,6 +6,11 @@ Environment Variables
 - $GITHUB_SHA
 - $GITHUB_REPOSITORY
 - $GITHUB_WORKSPACE
+- $GITHUB_EVENT_NAME
+- $GITHUB_ACTION
+- $HOME
+
+- secrets.GITHUB_TOKEN
 
 Outputs
 - github.token
@@ -13,3 +18,24 @@ Outputs
 - github.event.client_payload.<key> # Repository Dispatch
 
 Patterns for paths: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
+
+Context
+- secrets
+- github
+- job
+- runner
+- strategy
+- matrix
+https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions
+
+Functions
+- toJSON
+- contains
+- startsWith
+- endsWith
+- format
+https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#functions
+
+- if: failure()
+- if: github.event_name == 'push'
+- if: always()
